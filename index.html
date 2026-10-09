@@ -15,11 +15,24 @@
     .brand{display:flex;align-items:center;gap:12px}.mark{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:var(--yellow);box-shadow:0 4px 0 #e4bd37;font-size:27px}
     .brandname{font-weight:900;color:var(--navy);font-size:18px;line-height:1.15}.kicker{margin-top:4px;font-size:11px;letter-spacing:1.25px;text-transform:uppercase;color:var(--muted);font-weight:800}
     .grade{flex-shrink:0;padding:8px 13px;border:1px solid #efdfad;border-radius:99px;background:#fff4c6;color:#725a12;font-weight:900;font-size:12px}
-    .hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:clamp(24px,5vw,42px);border-radius:28px;background:var(--navy);color:white;box-shadow:var(--shadow)}
+    .hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:clamp(24px,5vw,42px);border-radius:28px;background:
+ url("images/hero-house.png") center / cover no-repeat;
+  ),
+  url("images/hero-house.png") center / cover no-repeat;;color:white;box-shadow:var(--shadow)}
     .hero:after{content:"";position:absolute;width:270px;height:270px;right:-65px;top:-145px;border:30px solid #ffd84d20;border-radius:50%;pointer-events:none}
     .hero-copy{position:relative;z-index:1;max-width:650px}.eyebrow{display:block;margin-bottom:11px;color:var(--yellow);font-size:12px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase}
     h1{margin:0;font-size:clamp(32px,5.7vw,56px);line-height:1.02;letter-spacing:-1.6px}.hero p{max-width:550px;margin:15px 0 0;color:#e4eaf5;font-size:clamp(14px,1.8vw,17px)}
     .hero-doodle{position:relative;z-index:1;flex:0 0 auto;display:grid;place-items:center;width:clamp(100px,17vw,165px);height:clamp(100px,17vw,165px);border:2px solid #ffffff25;border-radius:36px;background:#ffffff12;font-size:clamp(56px,9vw,88px);transform:rotate(4deg)}
+	.hero-image {
+  position: relative;
+  z-index: 1;
+  flex: 0 1 310px;
+  width: clamp(180px, 28vw, 310px);
+  max-height: 210px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+}
     .tabs{position:sticky;top:8px;z-index:10;display:flex;gap:7px;width:max-content;max-width:100%;margin:19px auto 24px;padding:7px;border:1px solid var(--line);border-radius:17px;background:#fffdf8f2;box-shadow:0 6px 22px #31394b12;backdrop-filter:blur(8px)}
     .tab{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:10px 19px;border:0;border-radius:12px;background:transparent;color:var(--muted);font-weight:900;white-space:nowrap}
     .tab[aria-selected="true"]{background:var(--yellow);color:var(--navy);box-shadow:0 3px 0 #e5bc35}.page{display:none;animation:appear .2s ease-out}.page.active{display:block}@keyframes appear{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
@@ -62,8 +75,40 @@
     footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding:17px 2px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}footer strong{color:var(--navy)}
     @media(max-width:760px){.shell{width:min(100% - 24px,600px)}.hero{border-radius:23px}.hero-doodle{width:95px;height:95px;border-radius:25px}.tabs{width:100%;justify-content:stretch;gap:4px;margin-top:14px}.tab{flex:1;min-width:0;padding:10px 7px;font-size:13px;gap:5px}.quiz-shell{width:100%}.quiz-card{padding:15px}.quiz-visual{height:205px}.quiz-options{grid-template-columns:1fr;gap:8px}.quiz-option-button{min-height:49px;font-size:15px}.heading{align-items:flex-start}.count{font-size:10px;padding:7px 9px}.tf-item{grid-template-columns:minmax(0,1fr) 112px;gap:10px}.story-title{flex-wrap:wrap}}
     @media(max-width:430px){.topbar{padding-top:15px}.mark{width:43px;height:43px}.brandname{font-size:16px}.kicker{font-size:9px;letter-spacing:.8px}.grade{font-size:10px;padding:7px 9px}.hero{padding:23px 19px}.hero-doodle{width:72px;height:72px;font-size:43px;border-radius:20px}.eyebrow{font-size:10px}h1{font-size:34px;letter-spacing:-1.2px}.hero p{font-size:13px;margin-top:11px}.tab{font-size:11px;padding:9px 5px}.flashcard{height:410px}.flash-image-stage{width:205px;height:195px}.flash-word{font-size:31px}.flash-controls{gap:9px}.primary,.secondary{min-height:46px;padding:10px 14px;font-size:13px}.tf-item{grid-template-columns:1fr;gap:8px}.tf-item select{max-width:170px}.story,.task{padding:18px}.story-text{line-height:1.9}.tag{font-size:10px}.heading h2{font-size:25px}}
+	@media (max-width: 760px) {
+  .hero-image {
+    width: 120px;
+    max-height: 130px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-image {
+    width: 75px;
+    max-height: 85px;
+  }
+}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-  </style>
+.hero {
+  position: relative;
+  height: clamp(190px, 26vw, 300px);
+  min-height: 190px;
+  padding: 0 !important;
+  overflow: hidden;
+  background: url("images/hero-house.png") center / cover no-repeat !important;
+}
+
+/* Скрываем текст и декоративные элементы */
+.hero h1,
+.hero p,
+.hero .eyebrow,
+.hero .hero-doodle,
+.hero .hero-image,
+.hero::before,
+.hero::after {
+  display: none !important;
+}
+ </style>
 </head>
 <body>
   <main class="shell">
@@ -74,7 +119,7 @@
 
     <section class="hero" aria-labelledby="main-title">
       <div class="hero-copy"><span class="eyebrow"></span><h1 id="main-title">The place<br>we live in</h1><p>Learn words about the home, test your vocabulary and read about Patty’s dream house.</p></div>
-     
+
     </section>
 
     <nav class="tabs" aria-label="Learning sections" role="tablist">
