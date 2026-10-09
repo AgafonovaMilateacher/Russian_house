@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fef4e6">
+  <title>My Home, My World — Patty’s Dream Houses</title>
+  <style>
+    :root{--cream:#fef4e6;--paper:#fffdf8;--yellow:#ffd84d;--soft:#ffe99a;--navy:#142b55;--text:#1e2d43;--muted:#718097;--green:#79b86a;--greenbg:#eaf6e6;--red:#e94c4c;--redbg:#fff0ed;--line:#eadfce;--shadow:0 14px 38px #26334b12}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--cream);color:var(--text);font-family:"Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif;line-height:1.55}
+    button,select{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #648cda;outline-offset:3px}
+    .shell{width:min(1060px,calc(100% - 32px));margin:0 auto;padding-bottom:34px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:21px 0 18px}
+    .brand{display:flex;align-items:center;gap:12px}.mark{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:var(--yellow);box-shadow:0 4px 0 #e4bd37;font-size:27px}
+    .brandname{font-weight:900;color:var(--navy);font-size:18px;line-height:1.15}.kicker{margin-top:4px;font-size:11px;letter-spacing:1.25px;text-transform:uppercase;color:var(--muted);font-weight:800}
+    .grade{flex-shrink:0;padding:8px 13px;border:1px solid #efdfad;border-radius:99px;background:#fff4c6;color:#725a12;font-weight:900;font-size:12px}
+    .hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:clamp(24px,5vw,42px);border-radius:28px;background:var(--navy);color:white;box-shadow:var(--shadow)}
+    .hero:after{content:"";position:absolute;width:270px;height:270px;right:-65px;top:-145px;border:30px solid #ffd84d20;border-radius:50%;pointer-events:none}
+    .hero-copy{position:relative;z-index:1;max-width:650px}.eyebrow{display:block;margin-bottom:11px;color:var(--yellow);font-size:12px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase}
+    h1{margin:0;font-size:clamp(32px,5.7vw,56px);line-height:1.02;letter-spacing:-1.6px}.hero p{max-width:550px;margin:15px 0 0;color:#e4eaf5;font-size:clamp(14px,1.8vw,17px)}
+    .hero-doodle{position:relative;z-index:1;flex:0 0 auto;display:grid;place-items:center;width:clamp(100px,17vw,165px);height:clamp(100px,17vw,165px);border:2px solid #ffffff25;border-radius:36px;background:#ffffff12;font-size:clamp(56px,9vw,88px);transform:rotate(4deg)}
+    .tabs{position:sticky;top:8px;z-index:10;display:flex;gap:7px;width:max-content;max-width:100%;margin:19px auto 24px;padding:7px;border:1px solid var(--line);border-radius:17px;background:#fffdf8f2;box-shadow:0 6px 22px #31394b12;backdrop-filter:blur(8px)}
+    .tab{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:10px 19px;border:0;border-radius:12px;background:transparent;color:var(--muted);font-weight:900;white-space:nowrap}
+    .tab[aria-selected="true"]{background:var(--yellow);color:var(--navy);box-shadow:0 3px 0 #e5bc35}.page{display:none;animation:appear .2s ease-out}.page.active{display:block}@keyframes appear{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+    .heading{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:18px}.heading h2{margin:0;color:var(--navy);font-size:clamp(26px,3.7vw,34px);line-height:1.15;letter-spacing:-.7px}.heading p{margin:7px 0 0;color:var(--muted);font-size:14px}.count{flex:0 0 auto;align-self:center;padding:8px 12px;border:1px solid var(--line);border-radius:99px;background:var(--paper);color:var(--navy);font-size:12px;font-weight:900}
+    /* Vocabulary flashcard */
+    .flash-wrap{width:min(540px,100%);margin:0 auto}.flashcard{position:relative;width:100%;height:clamp(390px,57vw,515px);perspective:1200px;cursor:pointer;touch-action:manipulation}
+    .flash-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.75,.25,1)}.flashcard.flipped .flash-inner{transform:rotateY(180deg)}
+    .flash-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:clamp(20px,4vw,34px);border:1px solid #eee2d1;border-radius:30px;background:var(--paper);box-shadow:var(--shadow);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .flash-front:before{content:"";position:absolute;top:-50px;right:-43px;width:150px;height:150px;border-radius:50%;background:#fff2bd}.flash-back{transform:rotateY(180deg);border-color:#f1dc8e;background:#fff3bd;text-align:center}
+    .flash-image-stage{position:relative;display:grid;place-items:center;width:clamp(190px,37vw,285px);height:clamp(180px,34vw,255px);margin-bottom:19px;border-radius:30px;background:#fff7dc}
+    .flash-image{display:none;width:100%;height:100%;padding:12px;object-fit:contain;border-radius:30px}.flash-emoji{display:grid;place-items:center;width:100%;height:100%;font-size:clamp(88px,17vw,140px)}
+    .flash-word{position:relative;max-width:100%;overflow-wrap:anywhere;color:var(--navy);font-size:clamp(29px,5vw,42px);font-weight:900;line-height:1.16;text-align:center}
+    .listen{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:43px;margin-top:17px;padding:9px 18px;border:0;border-radius:99px;background:var(--navy);color:white;font-weight:900}.listen:hover{background:#284979}.flip-hint{margin-top:14px;color:#9a8a64;font-size:11px;font-weight:900;letter-spacing:.7px;text-transform:uppercase}
+    .translation{color:var(--navy);font-size:clamp(30px,5vw,44px);font-weight:900;line-height:1.2;overflow-wrap:anywhere}.translation-label{margin-bottom:14px;color:#8c7428;font-size:12px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase}
+    .flash-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:18px}.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:12px 21px;border:0;border-radius:14px;font-weight:900;transition:transform .14s ease,box-shadow .14s ease}.primary{background:var(--navy);color:white;box-shadow:0 4px 0 #0d1d37}.primary:hover{transform:translateY(-1px);box-shadow:0 5px 0 #0d1d37}.secondary{border:1px solid var(--line);background:white;color:var(--navy)}.secondary:hover{background:#fff9df}
+    /* Vocabulary test: one picture, three choices, instant feedback */
+    .quiz-shell{width:min(560px,100%);margin:0 auto}
+    .quiz-card{padding:clamp(16px,3vw,25px);border:1px solid var(--line);border-radius:26px;background:var(--paper);box-shadow:var(--shadow);transition:border-color .18s,background .18s}
+    .quiz-visual{display:grid;place-items:center;width:min(360px,100%);height:clamp(215px,35vw,285px);margin:0 auto 20px;border-radius:22px;background:#fff6d9;overflow:hidden}
+    .quiz-image{display:none;width:100%;height:100%;padding:12px;object-fit:contain}
+    .quiz-emoji{display:grid;place-items:center;width:100%;height:100%;font-size:clamp(90px,14vw,130px)}
+    .quiz-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .quiz-option-button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:58px;padding:10px 8px;border:2px solid #e6eaf0;border-radius:14px;background:white;color:var(--navy);font-weight:900;font-size:clamp(13px,1.8vw,16px);text-align:center;overflow-wrap:anywhere;transition:border-color .15s,background .15s}
+    .quiz-option-button:hover:not(:disabled){border-color:#d6b82e;background:#fff9db}
+    .quiz-option-button:focus-visible{outline:3px solid #648cda;outline-offset:3px}
+    .quiz-option-button:disabled{cursor:default;opacity:1}
+    .quiz-option-button.correct{border-color:var(--green);background:var(--greenbg);color:#2e7549}
+    .quiz-option-button.wrong{border-color:var(--red);background:var(--redbg);color:#a3403b}
+    .quiz-card.correct-card{border-color:#a7d39d}.quiz-card.wrong-card{border-color:#e9aaa1}
+    .quiz-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .quiz-score{color:var(--muted);font-size:13px;font-weight:900}
+    .quiz-result{display:none;align-items:center;justify-content:center;min-height:44px;margin-top:14px;padding:10px 14px;border-radius:13px;font-size:14px;font-weight:900;text-align:center}
+    .quiz-result.show{display:flex}.quiz-result.good{background:var(--greenbg);color:#2e7549}.quiz-result.try{background:var(--redbg);color:#a3403b}
+    .quiz-complete{width:min(560px,100%);margin:0 auto;padding:clamp(24px,5vw,40px);border:1px solid var(--line);border-radius:26px;background:var(--paper);box-shadow:var(--shadow);text-align:center}
+    .quiz-complete-icon{font-size:64px}.quiz-complete h3{margin:8px 0;color:var(--navy);font-size:clamp(25px,4vw,34px)}.quiz-complete p{color:var(--muted);font-size:16px}.quiz-final-score{margin:16px 0 23px;color:var(--navy);font-size:clamp(35px,7vw,52px);font-weight:900}
+
+    .reading-banner{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:220px;margin-bottom:18px;border:1px solid #e7ddc8;border-radius:26px;background:linear-gradient(135deg,#d8f0eb 0%,#fff0c7 58%,#f7dca5 100%)}.reading-picture{display:none;width:100%;height:clamp(220px,32vw,330px);object-fit:cover}.house-placeholder{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:clamp(220px,32vw,330px);overflow:hidden}.sun{position:absolute;top:25px;right:10%;width:61px;height:61px;border-radius:50%;background:#ffd84d;box-shadow:0 0 0 11px #ffd84d38}.cloud{position:absolute;top:32px;left:13%;font-size:clamp(34px,5vw,48px)}.tree{position:absolute;bottom:12px;font-size:clamp(45px,8vw,75px)}.tree.left{left:7%}.tree.right{right:7%}.izba-art{position:relative;z-index:1;margin-top:20px;font-size:clamp(110px,18vw,175px);line-height:1;filter:drop-shadow(0 12px 5px #57462226)}.visual-caption{position:absolute;z-index:2;bottom:13px;left:50%;transform:translateX(-50%);max-width:calc(100% - 20px);padding:6px 12px;border:1px solid #ffffffbf;border-radius:99px;background:#fffdf8e0;color:var(--navy);font-size:11px;font-weight:900;letter-spacing:1px;white-space:nowrap}
+    .story,.task{padding:clamp(19px,3.5vw,31px);border:1px solid var(--line);border-radius:24px;background:var(--paper);box-shadow:0 8px 24px #31394b0b}.story-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:17px}.story-title h2{margin:0;color:var(--navy);font-size:clamp(24px,3.5vw,33px);line-height:1.15;letter-spacing:-.6px}.tag{flex:0 0 auto;padding:7px 10px;border-radius:10px;background:var(--soft);color:#776017;font-size:11px;font-weight:900}
+    .story-text{max-width:900px;color:#344158;font-size:clamp(15px,1.75vw,17px);line-height:2}.story-text p{margin:0 0 13px}.inline-blank{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.isare{min-width:80px;padding:3px 23px 3px 9px;border:2px solid #e7d697;border-radius:9px;background:#fff8d9;color:var(--navy);font-weight:900}.isare.correct{border-color:var(--green);background:var(--greenbg)}.isare.incorrect{border-color:var(--red);background:var(--redbg)}.task-section{margin-top:22px}.task-heading{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}.task-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 auto;border-radius:14px;background:var(--yellow);font-size:21px}.task-heading h3{margin:0;color:var(--navy);font-size:clamp(19px,2.5vw,23px);line-height:1.2}.task-heading p{margin:4px 0 0;color:var(--muted);font-size:13px}.tf-list{display:grid;gap:10px}.tf-item{display:grid;grid-template-columns:minmax(0,1fr) 130px;align-items:center;gap:14px;padding:14px 15px;border:1px solid #eee5d8;border-radius:15px;background:white}.tf-statement{font-weight:700}.tf-item select{width:100%;min-height:43px;padding:8px 10px;border:2px solid #e4e8ef;border-radius:10px;background:#fff;color:var(--navy);font-weight:900}.tf-item.correct{border-color:#a7d39d;background:#f8fcf6}.tf-item.incorrect{border-color:#e9aaa1;background:#fff9f7}.feedback{display:none;align-items:center;gap:8px;min-height:40px;padding:8px 12px;border-radius:12px;font-size:13px;font-weight:900}.feedback.show{display:inline-flex}.feedback.good{background:var(--greenbg);color:#2e7549}.feedback.try{background:var(--redbg);color:#a3403b}
+    footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding:17px 2px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}footer strong{color:var(--navy)}
+    @media(max-width:760px){.shell{width:min(100% - 24px,600px)}.hero{border-radius:23px}.hero-doodle{width:95px;height:95px;border-radius:25px}.tabs{width:100%;justify-content:stretch;gap:4px;margin-top:14px}.tab{flex:1;min-width:0;padding:10px 7px;font-size:13px;gap:5px}.quiz-shell{width:100%}.quiz-card{padding:15px}.quiz-visual{height:205px}.quiz-options{grid-template-columns:1fr;gap:8px}.quiz-option-button{min-height:49px;font-size:15px}.heading{align-items:flex-start}.count{font-size:10px;padding:7px 9px}.tf-item{grid-template-columns:minmax(0,1fr) 112px;gap:10px}.story-title{flex-wrap:wrap}}
+    @media(max-width:430px){.topbar{padding-top:15px}.mark{width:43px;height:43px}.brandname{font-size:16px}.kicker{font-size:9px;letter-spacing:.8px}.grade{font-size:10px;padding:7px 9px}.hero{padding:23px 19px}.hero-doodle{width:72px;height:72px;font-size:43px;border-radius:20px}.eyebrow{font-size:10px}h1{font-size:34px;letter-spacing:-1.2px}.hero p{font-size:13px;margin-top:11px}.tab{font-size:11px;padding:9px 5px}.flashcard{height:410px}.flash-image-stage{width:205px;height:195px}.flash-word{font-size:31px}.flash-controls{gap:9px}.primary,.secondary{min-height:46px;padding:10px 14px;font-size:13px}.tf-item{grid-template-columns:1fr;gap:8px}.tf-item select{max-width:170px}.story,.task{padding:18px}.story-text{line-height:1.9}.tag{font-size:10px}.heading h2{font-size:25px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+     
+     
+    </header>
+
+    <section class="hero" aria-labelledby="main-title">
+      <div class="hero-copy"><span class="eyebrow"></span><h1 id="main-title">The place<br>we live in</h1><p>Learn words about the home, test your vocabulary and read about Patty’s dream house.</p></div>
+     
+    </section>
+
+    <nav class="tabs" aria-label="Learning sections" role="tablist">
+      <button class="tab" id="tab-vocabulary" role="tab" aria-selected="true" aria-controls="page-vocabulary" data-page="vocabulary">🗂️ Vocabulary</button>
+      <button class="tab" id="tab-test" role="tab" aria-selected="false" aria-controls="page-test" data-page="test">🎯 Vocabulary Test</button>
+      <button class="tab" id="tab-reading" role="tab" aria-selected="false" aria-controls="page-reading" data-page="reading">📖 Reading</button>
+    </nav>
+
+    <section class="page active" id="page-vocabulary" role="tabpanel" aria-labelledby="tab-vocabulary" tabindex="-1">
+      <div class="heading"><div><h2>Vocabulary cards</h2><p>Look at the picture, listen and flip the card to see the translation.</p></div><div class="count" id="card-count">1 / 25</div></div>
+      <div class="flash-wrap">
+        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Flip vocabulary card to see the translation">
+          <div class="flash-inner">
+            <div class="flash-face flash-front">
+              <div class="flash-image-stage"><img class="flash-image" id="flash-image" alt=""><span class="flash-emoji" id="flash-emoji" aria-hidden="true">💡</span></div>
+              <div class="flash-word" id="flash-word">lamp</div>
+              <button class="listen" id="listen-word" type="button">🔊 Listen</button>
+              <div class="flip-hint">Tap the card to flip ↻</div>
+            </div>
+            <div class="flash-face flash-back">
+              
+              <div class="translation" id="flash-translation">лампа</div>
+              <div class="flip-hint">Tap to return ↻</div>
+            </div>
+          </div>
+        </div>
+        <div class="flash-controls"><button class="primary" id="next-card" type="button">Next card <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="page" id="page-test" role="tabpanel" aria-labelledby="tab-test" tabindex="-1">
+      <div class="heading"><div><h2>Vocabulary Test</h2><p>Look at the picture and choose the correct English word.</p></div><div class="count" id="test-count">1 / 25</div></div>
+      <div class="quiz-shell" id="quiz-shell">
+        <article class="quiz-card" id="quiz-card">
+          <div class="quiz-visual"><img class="quiz-image" id="quiz-image" alt="Picture for the vocabulary question"><span class="quiz-emoji" id="quiz-emoji" aria-hidden="true">💡</span></div>
+          <div class="quiz-options" id="quiz-options" role="group" aria-label="Choose the correct English word"></div>
+          <div class="quiz-result" id="test-result" role="status" aria-live="polite"></div>
+          <div class="quiz-footer"><span class="quiz-score" id="quiz-score">Score: 0</span><button class="primary" id="next-test" type="button" disabled>Next →</button></div>
+        </article>
+      </div>
+      <section class="quiz-complete" id="quiz-complete" hidden>
+        <div class="quiz-complete-icon" aria-hidden="true">🎉</div>
+        <h3>Test complete!</h3>
+        <p>You have practised all 25 words.</p>
+        <div class="quiz-final-score" id="quiz-final-score">0 / 25</div>
+        <button class="primary" id="restart-test" type="button">↻ Try again</button>
+      </section>
+    </section>
+
+    <section class="page" id="page-reading" role="tabpanel" aria-labelledby="tab-reading" tabindex="-1">
+      <div class="reading-banner">
+        <img class="reading-picture" id="reading-picture" alt="Patty’s beautiful dream house">
+        <div class="house-placeholder" id="house-placeholder" aria-hidden="true"><span class="sun"></span><span class="cloud">☁️</span><span class="tree left">🌳</span><span class="tree right">🌲</span><span class="izba-art">🏡</span><span class="visual-caption">PATTY’S DREAM HOUSE</span></div>
+      </div>
+      <article class="story">
+        <div class="story-title"><h2>Patty’s Dream Houses</h2></div>
+        <div class="story-text">
+          <p>I have a big and beautiful house. There <span class="inline-blank"><select class="isare" aria-label="Choose is or are for three rooms" data-answer="are"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> three rooms in it. My bedroom is my favourite place. There <span class="inline-blank"><select class="isare" aria-label="Choose is or are for a comfortable bed and wardrobe" data-answer="is"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> a comfortable bed and a big white wardrobe for my clothes. There <span class="inline-blank"><select class="isare" aria-label="Choose is or are for a blue carpet and a yellow lamp" data-answer="is"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> a blue carpet on the floor and a yellow lamp on the desk. There <span class="inline-blank"><select class="isare" aria-label="Choose is or are for many books" data-answer="are"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> many books on the bookshelf, and there <span class="inline-blank"><select class="isare" aria-label="Choose is or are for funny paintings" data-answer="are"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> funny paintings on the wall. Next to the bed, there <span class="inline-blank"><select class="isare" aria-label="Choose is or are for a large mirror" data-answer="is"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> a large mirror. I also have a small bathroom. There <span class="inline-blank"><select class="isare" aria-label="Choose is or are for a white bath, a toilet and a washbasin" data-answer="is"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> a white bath, a toilet and a washbasin in it.</p>
+          <p>There <span class="inline-blank"><select class="isare" aria-label="Choose is or are for a big kitchen and a living room" data-answer="is"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> a big kitchen and a living room. In the kitchen, there <span class="inline-blank"><select class="isare" aria-label="Choose is or are for a cooker, a fridge, a sink and a table" data-answer="is"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> a new cooker, a fridge, a sink and a brown table with four chairs. The living room is very bright. There <span class="inline-blank"><select class="isare" aria-label="Choose is or are for two windows" data-answer="are"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> two windows and a long sofa with an armchair. There <span class="inline-blank"><select class="isare" aria-label="Choose is or are for a small coffee table" data-answer="is"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> a small coffee table in front of the sofa. When you enter the house, there <span class="inline-blank"><select class="isare" aria-label="Choose is or are for a small hall" data-answer="is"><option value="">—</option><option value="is">is</option><option value="are">are</option></select></span> a small hall. I love my beautiful house.</p>
+        </div>
+        <div class="actions"><button class="primary" id="check-isare" type="button">✓ Check is / are</button><button class="secondary" id="reset-isare" type="button">↻ Try again</button><div class="feedback" id="isare-feedback" role="status" aria-live="polite"></div></div>
+      </article>
+
+      <section class="task task-section" aria-labelledby="tf-title">
+        <div class="task-heading"><div class="task-icon" aria-hidden="true">✅</div><div><h3 id="tf-title">Task 1. True or False?</h3><p>Read the sentences about Patty’s house and choose True or False.</p></div></div>
+        <div class="tf-list">
+          <div class="tf-item" data-answer="False"><div class="tf-statement">1. Patty’s house is small.</div><select aria-label="Statement 1"><option value="">Choose...</option><option value="True">True</option><option value="False">False</option></select></div>
+          <div class="tf-item" data-answer="True"><div class="tf-statement">2. There is a blue carpet on the floor in the bedroom.</div><select aria-label="Statement 2"><option value="">Choose...</option><option value="True">True</option><option value="False">False</option></select></div>
+          <div class="tf-item" data-answer="True"><div class="tf-statement">3. Patty has a big kitchen and a living room.</div><select aria-label="Statement 3"><option value="">Choose...</option><option value="True">True</option><option value="False">False</option></select></div>
+          <div class="tf-item" data-answer="False"><div class="tf-statement">4. There are four chairs in the living room.</div><select aria-label="Statement 4"><option value="">Choose...</option><option value="True">True</option><option value="False">False</option></select></div>
+          <div class="tf-item" data-answer="True"><div class="tf-statement">5. When you enter the house, there is a small hall.</div><select aria-label="Statement 5"><option value="">Choose...</option><option value="True">True</option><option value="False">False</option></select></div>
+        </div>
+        <div class="actions"><button class="primary" id="check-tf" type="button">✓ Check answers</button><button class="secondary" id="reset-tf" type="button">↻ Try again</button><div class="feedback" id="tf-feedback" role="status" aria-live="polite"></div></div>
+      </section>
+    </section>
+
+   
+  </main>
+
+  <script>
+    const vocabulary = [
+      {word:'lamp',translation:'лампа',emoji:'💡',image:'images/lamp.jpg'},
+      {word:'wardrobe',translation:'шкаф для одежды',emoji:'🚪',image:'images/wardrobe.jpg'},
+      {word:'bed',translation:'кровать',emoji:'🛏️',image:'images/bed.jpg'},
+      {word:'books',translation:'книги',emoji:'📚',image:'images/books.jpg'},
+      {word:'bookshelf',translation:'книжная полка',emoji:'📚',image:'images/bookshelf.jpg'},
+      {word:'desk',translation:'письменный стол',emoji:'📝',image:'images/desk.jpg'},
+      {word:'carpet',translation:'ковёр',emoji:'🟫',image:'images/carpet.jpg'},
+      {word:'mirror',translation:'зеркало',emoji:'🪞',image:'images/mirror.jpg'},
+      {word:'washbasin',translation:'раковина в ванной',emoji:'🚰',image:'images/washbasin.jpg'},
+      {word:'bath',translation:'ванна',emoji:'🛁',image:'images/bath.jpg'},
+      {word:'toilet',translation:'унитаз',emoji:'🚽',image:'images/toilet.jpg'},
+      {word:'sink',translation:'кухонная раковина',emoji:'🚰',image:'images/sink.jpg'},
+      {word:'cooker',translation:'плита',emoji:'🍳',image:'images/cooker.jpg'},
+      {word:'table',translation:'стол',emoji:'🪵',image:'images/table.jpg'},
+      {word:'chairs',translation:'стулья',emoji:'🪑',image:'images/chairs.jpg'},
+      {word:'fridge',translation:'холодильник',emoji:'🧊',image:'images/fridge.jpg'},
+      {word:'paintings',translation:'картины',emoji:'🖼️',image:'images/paintings.jpg'},
+      {word:'armchair',translation:'кресло',emoji:'🪑',image:'images/armchair.jpg'},
+      {word:'coffee table',translation:'журнальный столик',emoji:'☕',image:'images/coffee-table.jpg'},
+      {word:'sofa',translation:'диван',emoji:'🛋️',image:'images/sofa.jpg'},
+      {word:'bench',translation:'скамейка',emoji:'🪑',image:'images/bench.jpg'},
+      {word:'cupboard',translation:'шкафчик',emoji:'🗄️',image:'images/cupboard.jpg'},
+      {word:'Russian stove',translation:'русская печь',emoji:'🧱',image:'images/russian-stove.jpg'},
+      {word:'izba',translation:'изба',emoji:'🛖',image:'images/izba.jpg'},
+      {word:'samovar',translation:'самовар',emoji:'🫖',image:'images/samovar.jpg'}
+    ];
+
+    function shuffle(list){
+      const result=[...list];
+      for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}
+      return result;
+    }
+    function slugify(word){return word.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+    // Load the explicit local path stored on each vocabulary item.
+    // If the preferred extension is missing, try the other supported formats.
+    function attachLocalImage(img,fallback,imagePath){
+      const fallbackDisplay=fallback.classList.contains('house-placeholder')?'flex':'grid';
+      const dotIndex=imagePath.lastIndexOf('.');
+      const slashIndex=imagePath.lastIndexOf('/');
+      const hasExtension=dotIndex>slashIndex;
+      const base=hasExtension?imagePath.slice(0,dotIndex):imagePath;
+      const preferredExtension=hasExtension?imagePath.slice(dotIndex+1).toLowerCase():null;
+      const extensions=[preferredExtension,...['webp','png','jpg','jpeg','gif'].filter(ext=>ext!==preferredExtension)].filter(Boolean);
+      const candidates=extensions.map(ext=>`${base}.${ext}`);
+      let index=0;img.style.display='none';fallback.style.display=fallbackDisplay;
+      img.onerror=()=>{index++;if(index<candidates.length){img.src=candidates[index];}else{img.style.display='none';fallback.style.display=fallbackDisplay;}};
+      img.onload=()=>{img.style.display='block';fallback.style.display='none';};
+      img.src=candidates[0];
+    }
+    function speak(word){
+      if(!('speechSynthesis' in window)){return;}
+      window.speechSynthesis.cancel();
+      const utterance=new SpeechSynthesisUtterance(word);utterance.lang='en-GB';utterance.rate=.82;
+      const voices=window.speechSynthesis.getVoices();
+      const voice=voices.find(v=>/^en(-|_)/i.test(v.lang)&&/uk|british|united kingdom|england/i.test(v.name))||voices.find(v=>/^en(-|_)/i.test(v.lang));
+      if(voice)utterance.voice=voice;window.speechSynthesis.speak(utterance);
+    }
+
+    // One large flashcard at a time.
+    let cardIndex=0;
+    const flashcard=document.getElementById('flashcard');
+    const flashImage=document.getElementById('flash-image');
+    const flashEmoji=document.getElementById('flash-emoji');
+    function renderFlashcard(){
+      const item=vocabulary[cardIndex];flashcard.classList.remove('flipped');
+      document.getElementById('flash-word').textContent=item.word;
+      document.getElementById('flash-translation').textContent=item.translation;
+      flashEmoji.textContent=item.emoji;
+      attachLocalImage(flashImage,flashEmoji,item.image);
+      document.getElementById('card-count').textContent=`${cardIndex+1} / ${vocabulary.length}`;
+      flashcard.setAttribute('aria-label',`${item.word}. Tap to flip the card and see the translation.`);
+    }
+    flashcard.addEventListener('click',event=>{if(event.target.closest('#listen-word'))return;flashcard.classList.toggle('flipped');});
+    flashcard.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&event.target===flashcard){event.preventDefault();flashcard.classList.toggle('flipped');}});
+    document.getElementById('listen-word').addEventListener('click',event=>{event.stopPropagation();speak(vocabulary[cardIndex].word);});
+    document.getElementById('next-card').addEventListener('click',()=>{cardIndex=(cardIndex+1)%vocabulary.length;renderFlashcard();});
+    renderFlashcard();
+
+    // Vocabulary Test: one picture at a time, immediate checking, all 25 words.
+    const quizCard=document.getElementById('quiz-card');
+    const quizImage=document.getElementById('quiz-image');
+    const quizEmoji=document.getElementById('quiz-emoji');
+    const quizOptions=document.getElementById('quiz-options');
+    const testCount=document.getElementById('test-count');
+    const testResult=document.getElementById('test-result');
+    const nextTestButton=document.getElementById('next-test');
+    const quizScoreLabel=document.getElementById('quiz-score');
+    const quizComplete=document.getElementById('quiz-complete');
+    const quizShell=document.getElementById('quiz-shell');
+    let testItems=[];
+    let testIndex=0;
+    let testScore=0;
+    let testAnswered=false;
+
+    function buildTest(){
+      testItems=shuffle(vocabulary);
+      testIndex=0;
+      testScore=0;
+      testAnswered=false;
+      quizShell.hidden=false;
+      quizComplete.hidden=true;
+      quizCard.style.display='block';
+      quizScoreLabel.textContent='Score: 0';
+      renderTestQuestion();
+    }
+
+    function renderTestQuestion(){
+      const item=testItems[testIndex];
+      testAnswered=false;
+      quizCard.classList.remove('correct-card','wrong-card');
+      testCount.textContent=`${testIndex+1} / ${testItems.length}`;
+      quizEmoji.textContent=item.emoji;
+      attachLocalImage(quizImage,quizEmoji,item.image);
+      quizOptions.innerHTML='';
+      const choices=shuffle([item,...shuffle(vocabulary.filter(other=>other.word!==item.word)).slice(0,2)]);
+      choices.forEach((choice,index)=>{
+        const button=document.createElement('button');
+        button.type='button';
+        button.className='quiz-option-button';
+        button.textContent=choice.word;
+        button.dataset.word=choice.word;
+        button.setAttribute('aria-label',`Option ${index+1}: ${choice.word}`);
+        button.addEventListener('click',()=>checkTestAnswer(button,item.word));
+        quizOptions.appendChild(button);
+      });
+      testResult.className='quiz-result';
+      testResult.textContent='';
+      nextTestButton.disabled=true;
+      nextTestButton.textContent=testIndex===testItems.length-1?'See result →':'Next →';
+    }
+
+    function checkTestAnswer(selectedButton,correctWord){
+      if(testAnswered)return;
+      testAnswered=true;
+      const isCorrect=selectedButton.dataset.word===correctWord;
+      if(isCorrect)testScore++;
+      [...quizOptions.querySelectorAll('.quiz-option-button')].forEach(button=>{
+        button.disabled=true;
+        if(button.dataset.word===correctWord)button.classList.add('correct');
+      });
+      if(!isCorrect)selectedButton.classList.add('wrong');
+      quizCard.classList.add(isCorrect?'correct-card':'wrong-card');
+      testResult.className=`quiz-result show ${isCorrect?'good':'try'}`;
+      testResult.textContent=isCorrect?'✓ Correct! Well done!':`Not quite! The correct answer is “${correctWord}”.`;
+      quizScoreLabel.textContent=`Score: ${testScore}`;
+      nextTestButton.disabled=false;
+      nextTestButton.focus({preventScroll:true});
+    }
+
+    function advanceTest(){
+      if(!testAnswered)return;
+      if(testIndex<testItems.length-1){
+        testIndex++;
+        renderTestQuestion();
+      }else{
+        quizShell.hidden=true;
+        quizComplete.hidden=false;
+        document.getElementById('quiz-final-score').textContent=`${testScore} / ${testItems.length}`;
+        testCount.textContent=`${testItems.length} / ${testItems.length}`;
+      }
+    }
+    nextTestButton.addEventListener('click',advanceTest);
+    document.getElementById('restart-test').addEventListener('click',buildTest);
+    buildTest();
+
+    // Tabs.
+    document.querySelectorAll('.tab').forEach(button=>button.addEventListener('click',()=>{
+      const page=button.dataset.page;
+      document.querySelectorAll('.tab').forEach(tab=>tab.setAttribute('aria-selected',String(tab===button)));
+      document.querySelectorAll('.page').forEach(section=>section.classList.toggle('active',section.id===`page-${page}`));
+      document.getElementById(`page-${page}`).focus({preventScroll:true});
+    }));
+
+    // Reading illustration: add images/patty-house.png (or another supported extension).
+    attachLocalImage(document.getElementById('reading-picture'),document.getElementById('house-placeholder'),'images/patty-house.jpg');
+
+    // Check there is / there are.
+    const isareSelects=[...document.querySelectorAll('.isare')];
+    const isareFeedback=document.getElementById('isare-feedback');
+    document.getElementById('check-isare').addEventListener('click',()=>{
+      let score=0,answered=0;
+      isareSelects.forEach(select=>{
+        select.classList.remove('correct','incorrect');if(select.value)answered++;
+        if(select.value===select.dataset.answer){score++;select.classList.add('correct');}
+        else if(select.value)select.classList.add('incorrect');
+      });
+      isareFeedback.className=`feedback show ${score===isareSelects.length?'good':'try'}`;
+      isareFeedback.textContent=score===isareSelects.length?`🎉 Perfect! ${score}/${isareSelects.length}`:`⭐ ${score}/${isareSelects.length} correct · ${isareSelects.length-answered} left to answer`;
+    });
+    document.getElementById('reset-isare').addEventListener('click',()=>{
+      isareSelects.forEach(select=>{select.value='';select.classList.remove('correct','incorrect');});
+      isareFeedback.className='feedback';isareFeedback.textContent='';
+    });
+
+    // Check True / False.
+    const tfItems=[...document.querySelectorAll('.tf-item')];
+    const tfFeedback=document.getElementById('tf-feedback');
+    document.getElementById('check-tf').addEventListener('click',()=>{
+      let score=0,answered=0;
+      tfItems.forEach(item=>{
+        const select=item.querySelector('select');item.classList.remove('correct','incorrect');if(select.value)answered++;
+        if(select.value===item.dataset.answer){score++;item.classList.add('correct');}
+        else if(select.value)item.classList.add('incorrect');
+      });
+      tfFeedback.className=`feedback show ${score===tfItems.length?'good':'try'}`;
+      tfFeedback.textContent=score===tfItems.length?`🏆 Excellent! ${score}/${tfItems.length}`:`📘 Your score: ${score}/${tfItems.length} · ${tfItems.length-answered} left to answer`;
+    });
+    document.getElementById('reset-tf').addEventListener('click',()=>{
+      tfItems.forEach(item=>{item.classList.remove('correct','incorrect');item.querySelector('select').value='';});
+      tfFeedback.className='feedback';tfFeedback.textContent='';
+    });
+  </script>
+</body>
+</html>
