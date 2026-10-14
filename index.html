@@ -107,35 +107,11 @@
 .hero::before,
 .hero::after {
   display: none !important;
-	/* Подпись внизу сайта */
-.site-credit {
-  margin-top: 30px;
-  padding: 22px 15px;
-  border-top: 1px solid #e7ddc8;
-  color: #7b8190;
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.8;
-  text-align: center;
-}
-
-.site-credit strong {
-  display: inline;
-  color: #142b55;
-  font-weight: 700;
-}
-
-@media (max-width: 600px) {
-  .site-credit {
-    padding: 18px 10px;
-    font-size: 12px;
-  }
-
-  .site-credit strong {
-    display: block;
-  }
-}
 	}
+	    /* Footer credit */
+    .site-credit{margin-top:30px;padding:22px 15px;border-top:1px solid #e7ddc8;color:#7b8190;font-family:Arial,sans-serif;font-size:13px;line-height:1.8;text-align:center}
+    .site-credit strong{display:inline;color:#142b55;font-weight:700}
+    @media(max-width:600px){.site-credit{padding:18px 10px;font-size:12px}.site-credit strong{display:block}}
  </style>
 </head>
 <body>
@@ -223,7 +199,10 @@
         <div class="actions"><button class="primary" id="check-tf" type="button">✓ Check answers</button><button class="secondary" id="reset-tf" type="button">↻ Try again</button><div class="feedback" id="tf-feedback" role="status" aria-live="polite"></div></div>
       </section>
     </section>
-
+ <footer class="site-credit">
+    Сайт создан ВК сообществом:
+    <strong>Агафонова Людмила | Блог учителя английского</strong>
+  </footer>
    
   </main>
 
@@ -440,10 +419,7 @@
       tfItems.forEach(item=>{item.classList.remove('correct','incorrect');item.querySelector('select').value='';});
       tfFeedback.className='feedback';tfFeedback.textContent='';
     });
-	    <footer class="site-credit">
-    Сайт создан ВК сообществом:
-    <strong>Агафонова Людмила | Блог учителя английского</strong>
-  </footer>
+	   
   </script>
 </body>
 </html>
