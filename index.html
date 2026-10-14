@@ -108,10 +108,35 @@
 .hero::after {
   display: none !important;
 	}
-	    /* Footer credit */
-    .site-credit{margin-top:30px;padding:22px 15px;border-top:1px solid #e7ddc8;color:#7b8190;font-family:Arial,sans-serif;font-size:13px;line-height:1.8;text-align:center}
-    .site-credit strong{display:inline;color:#142b55;font-weight:700}
-    @media(max-width:600px){.site-credit{padding:18px 10px;font-size:12px}.site-credit strong{display:block}}
+	  .site-credit {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 30px auto 0;
+  padding: 22px 15px;
+  border-top: 1px solid #e7ddc8;
+  color: #7b8190;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center !important;
+}
+
+.site-credit strong {
+  color: #142b55;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .site-credit {
+    padding: 18px 10px;
+    font-size: 12px;
+  }
+
+  .site-credit strong {
+    display: block;
+  }
+}
  </style>
 </head>
 <body>
@@ -221,9 +246,9 @@
       {word:'sink',translation:'кухонная раковина',image:'images/sink.jpg'},
       {word:'cooker',translation:'плита', image:'images/cooker.jpg'},
       {word:'table',translation:'стол', image:'images/table.jpg'},
-      {word:'chairs',translation:'стулья', image:'images/chairs.jpg'},
+      {word:'chair',translation:'стул', image:'images/chairs.jpg'},
       {word:'fridge',translation:'холодильник', image:'images/fridge.jpg'},
-      {word:'paintings',translation:'картины', image:'images/paintings.jpg'},
+      {word:'painting',translation:'картина', image:'images/paintings.jpg'},
       {word:'armchair',translation:'кресло', image:'images/armchair.jpg'},
       {word:'coffee table',translation:'журнальный столик', image:'images/coffee-table.jpg'},
       {word:'sofa',translation:'диван', image:'images/sofa.jpg'},
